@@ -6,7 +6,7 @@ ActiveAdmin.register AdminUser do
       super.where.not(email: ['admin@example.com', 'santattech@gmail.com'])
     end
 
-    actions :all, except: [:destroy]
+    actions :all, except: [:destroy, :new, :create]
   end
 
   index do
