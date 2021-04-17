@@ -1,6 +1,14 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
 
+  controller do
+    def scoped_collection
+      super.where.not(email: ['admin@example.com', 'santattech@gmail.com'])
+    end
+
+    actions :all, except: [:destroy]
+  end
+
   index do
     selectable_column
     id_column
