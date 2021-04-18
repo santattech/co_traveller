@@ -60,6 +60,20 @@ ActiveAdmin.register PlannedTour do
 
   end
 
+  form do |f|
+    f.semantic_errors
+    f.inputs do
+      f.input :name
+      f.input :start_date
+      f.input :end_date
+      f.input :description, input_html: {class: 'ckeditor'}
+
+    end
+
+    para "Press cancel to return to the list without saving."
+    actions
+  end
+
   member_action :add_participant, method: :get do
     @planned_tour = PlannedTour.find(params[:id])
   end
