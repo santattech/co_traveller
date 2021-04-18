@@ -21,7 +21,7 @@
 
 .admin_dashboard {
   #main_content {
-    background: transparent no-repeat center center fixed url("../images/background.jpeg");
+    background: transparent no-repeat center center fixed url("../images/background.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -30,7 +30,7 @@
   }
 
   .blank_slate {
-    color: white;
+    color: #ccc;
     font-size: 20px;
   }
 }
