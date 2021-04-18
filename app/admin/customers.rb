@@ -5,7 +5,7 @@ ActiveAdmin.register Customer do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :name, :email, :phone_number, :sex, :address
+  permit_params :name, :phone_number, :sex, :address, :age, :adhar_no
   #
   # or
   #
@@ -15,13 +15,34 @@ ActiveAdmin.register Customer do
   #   permitted
   # end
 
+  index do
+    id_column
+    column :name
+    column :phone_number
+    column :sex do |c|
+      c.sex.capitalize
+    end
+
+    column :age do |c|
+      pluralize(c.age.to_i, 'year')
+    end
+
+    column :adhar_no
+    column :updated_at
+
+    actions
+  end
+
+
   form do |f|
     f.semantic_errors
     f.inputs do
       f.input :name
-      f.input :email
       f.input :phone_number
       f.input :sex, as: :select, collection: ["male", "female"]
+      f.input :age
+      f.input :adhar_no
+      f.input :address
     end
 
     para "Press cancel to return to the list without saving."
