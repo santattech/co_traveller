@@ -10,8 +10,26 @@
 // Active Admin's got SASS!
 @import "~@activeadmin/activeadmin/src/scss/mixins";
 @import "~@activeadmin/activeadmin/src/scss/base";
+//@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 
 // Overriding any non-variable Sass must be done after the fact.
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+
+.admin_dashboard {
+  #main_content {
+    background: url("/assets/background.jpeg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100vh;
+  }
+
+  .blank_slate {
+    color: white;
+    font-size: 20px;
+  }
+}
