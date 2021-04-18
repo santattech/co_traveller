@@ -10,6 +10,7 @@
 // Active Admin's got SASS!
 @import "~@activeadmin/activeadmin/src/scss/mixins";
 @import "~@activeadmin/activeadmin/src/scss/base";
+
 //@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 
 // Overriding any non-variable Sass must be done after the fact.
@@ -20,7 +21,7 @@
 
 .admin_dashboard {
   #main_content {
-    background: url("/assets/background.jpeg") no-repeat center center fixed;
+    background: transparent no-repeat center center fixed url("../images/background.jpeg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
