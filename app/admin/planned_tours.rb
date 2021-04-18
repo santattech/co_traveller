@@ -66,7 +66,7 @@ ActiveAdmin.register PlannedTour do
       f.input :name
       f.input :start_date
       f.input :end_date
-      f.input :description, input_html: {class: 'ckeditor'}
+      f.input :description
 
     end
 
