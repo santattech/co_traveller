@@ -1,5 +1,9 @@
 ActiveAdmin.register PlannedTour do
 
+
+  action_item :add_participant, only: :show do
+    link_to "Add Particiapnts", add_participant_admin_planned_tour_path(planned_tour.id), method: :get
+  end
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -28,4 +32,50 @@ ActiveAdmin.register PlannedTour do
 
     actions
   end
+
+  show do
+    attributes_table do
+      row :name
+      row :start_date
+      row :end_date
+
+      row :description do |p|
+        p.description.to_s.html_safe
+      end
+
+      row :updated_at
+    end
+
+    panel "Participants" do
+      table_for planned_tour.participants do
+        column :name do |participant|
+          participant.customer.name
+        end
+
+        column :phone_number do |participant|
+          participant.customer.phone_number
+        end
+      end
+    end
+
+  end
+
+  member_action :add_participant, method: :get do
+    @planned_tour = PlannedTour.find(params[:id])
+  end
+
+  member_action :submit_participant, method: :put do
+    planned_tour = PlannedTour.find(params[:id])
+    customer = Customer.find_by(id: params[:participant][:customer_id])
+
+    if customer && planned_tour
+      participant = planned_tour.participants.create!(customer_id: customer.id)
+      redirect_to admin_planned_tour_path(planned_tour.id), notice: "Added successfully"
+    else
+      redirect_to admin_planned_tour_path(planned_tour.id), alert: "It is already added or any other errors"
+    end
+  rescue => e
+    redirect_to admin_planned_tour_path(planned_tour.id), alert: e.message
+  end
+
 end

@@ -5,7 +5,7 @@ ActiveAdmin.register_page "Dashboard" do
     div class: "blank_slate_container", id: "dashboard_default_message" do
       span class: "blank_slate" do
         span "Welcome to Co Traveller administration page."
-        small "Today is #{Date.today}. Happy surfing!!!"
+        small "Today is #{Date.today}. Happy travelling!!!"
       end
     end
 
