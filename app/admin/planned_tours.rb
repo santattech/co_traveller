@@ -1,5 +1,5 @@
 ActiveAdmin.register PlannedTour do
-
+  config.batch_actions = false
 
   action_item :add_participant, only: :show do
     link_to "Add Particiapnts", add_participant_admin_planned_tour_path(planned_tour.id), method: :get

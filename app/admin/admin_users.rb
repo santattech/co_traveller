@@ -1,4 +1,5 @@
 ActiveAdmin.register AdminUser do
+  config.batch_actions = false
   permit_params :email, :password, :password_confirmation
 
   controller do
