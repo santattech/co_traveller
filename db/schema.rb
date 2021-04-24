@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_18_110654) do
+ActiveRecord::Schema.define(version: 2021_04_24_125846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 2021_04_18_110654) do
     t.integer "age"
   end
 
+  create_table "participant_payments", force: :cascade do |t|
+    t.integer "payment_type", null: false
+    t.integer "planned_tour_id", null: false
+    t.decimal "amount", default: "0.0", null: false
+    t.integer "participant_id", null: false
+    t.date "payment_date", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "participants", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "planned_tour_id"
@@ -74,4 +84,6 @@ ActiveRecord::Schema.define(version: 2021_04_18_110654) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "participant_payments", "participants"
+  add_foreign_key "participant_payments", "planned_tours"
 end

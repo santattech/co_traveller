@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   root 'admin/dashboard#index'
 
-
+  get 'view_participant_payments', to: 'admin/planned_tours#view_participant_payments'
 end
