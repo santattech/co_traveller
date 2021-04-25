@@ -1,0 +1,29 @@
+<article class="user-login">
+  <header class="user-login_header">
+    <%= image_tag "logo1.png", alt: '', class: "homescreen-branding_logo" %>
+    <small class="homescreen-branding_caption">The Co Traveller Admin Portal</small>
+  </header>
+</article>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <fieldset class="">
+    <%= f.label :email, class: "user-login-form-label" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </fieldset>
+
+  <fieldset class="">
+    <%= f.label :password, class: "user-login-form-label" %>
+    <%= f.password_field :password, autocomplete: "current-password" %>
+  </fieldset>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, class: "user-login-form-label_remember" %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>

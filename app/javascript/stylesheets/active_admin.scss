@@ -49,3 +49,36 @@
     }
   }
 }
+
+.user-login_header {
+  border-bottom: 1px solid #eee;
+  margin: 10px auto;
+  padding: 0 0 5px;
+}
+
+.user-login {
+  text-align: center;
+}
+
+.user-login .homescreen-branding_logo {
+  max-height: 40px;
+  max-width: 48px;
+}
+
+.user-login-form-label {
+    display: block;
+    width: 20%;
+    float: left;
+    font-size: 1em;
+    font-weight: 700;
+    color: #5e6469;
+
+    &_remember {
+      display: block;
+      width: 20%;
+      float: left;
+      font-size: 1em;
+      font-weight: 200;
+      color: #5e6469;
+    }
+}
