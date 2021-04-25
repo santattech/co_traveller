@@ -18,7 +18,6 @@ ActiveAdmin.register Customer do
   index do
     id_column
     column :name
-    column :phone_number
     column :sex do |c|
       c.sex.capitalize
     end
@@ -28,6 +27,7 @@ ActiveAdmin.register Customer do
     end
 
     column :adhar_no
+    column :phone_number
     column :updated_at
 
     actions

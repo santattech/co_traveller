@@ -23,14 +23,16 @@ ActiveAdmin.register Participant do
       end
 
       row :amount do |p|
-        p.participant_payments.sum(&:amount)
+        number_to_currency(p.total_amount_paid, precision: 3, unit: "Rs ")
       end
     end
 
     panel "Payment details" do
-      table_for participant.participant_payments do
-        column :payment_id do |p|
-           p.id
+      table_for participant.participant_payments.order_by_payment_date do
+        if Rails.env.development?
+          column :payment_id do |p|
+             p.id
+          end
         end
 
         column :payment_date do |p|
@@ -42,7 +44,7 @@ ActiveAdmin.register Participant do
         end
 
         column :amount do |p|
-           p.amount
+           number_to_currency(p.amount, precision: 3, unit: "Rs ")
         end
       end
     end

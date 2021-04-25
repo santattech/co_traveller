@@ -5,6 +5,8 @@ class ParticipantPayment < ApplicationRecord
   validates_presence_of :participant_id, :amount, :payment_type, :payment_date
   validates_numericality_of :amount
 
+  scope :order_by_payment_date, -> { order(:payment_date) }
+
   TYPE = {
     advanced: 0,
     installment_1: 1,

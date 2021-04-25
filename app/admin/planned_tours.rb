@@ -45,6 +45,10 @@ ActiveAdmin.register PlannedTour do
         p.description.to_s.html_safe
       end
 
+      row :total_amount_raised do |p|
+        p.participants.includes(:participant_payments).sum(&:total_amount_paid)
+      end
+
       row :updated_at
     end
 
