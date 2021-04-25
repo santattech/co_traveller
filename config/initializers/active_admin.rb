@@ -117,7 +117,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
+  config.root_to = 'dashboard#index'
 
   # == Admin Comments
   #
@@ -179,7 +179,7 @@ ActiveAdmin.setup do |config|
   # Add additional meta tags to the head element of active admin pages.
   #
   # Add tags to all pages logged in users see:
-  #   config.meta_tags = { author: 'My Company' }
+  config.meta_tags = { author: 'Santanu Bhattacharya' }
 
   # By default, sign up/sign in/recover password pages are excluded
   # from showing up in search engine results by adding a robots meta
@@ -271,7 +271,7 @@ ActiveAdmin.setup do |config|
   # Pagination is enabled by default for all resources.
   # You can control the default per page count for all resources here.
   #
-  # config.default_per_page = 30
+  config.default_per_page = 10
   #
   # You can control the max per page count too.
   #
@@ -317,7 +317,7 @@ ActiveAdmin.setup do |config|
   # By default, the footer shows the current Active Admin version. You can
   # override the content of the footer here.
   #
-  # config.footer = 'my custom footer text'
+  config.footer = 'Copyright © 2021. Developed by Santanu Bhattacharya. All rights reserved.'
 
   # == Sorting
   #
