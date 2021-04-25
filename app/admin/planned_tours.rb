@@ -1,9 +1,11 @@
 ActiveAdmin.register PlannedTour do
+  menu parent: "Tours", label: "PlannedTour", priority: 1
   config.batch_actions = false
 
   action_item :add_participant, only: :show do
     link_to "Add Particiapnts", add_participant_admin_planned_tour_path(planned_tour.id), method: :get
   end
+
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -43,6 +45,10 @@ ActiveAdmin.register PlannedTour do
         p.description.to_s.html_safe
       end
 
+      row :total_amount_raised do |p|
+        p.participants.includes(:participant_payments).sum(&:total_amount_paid)
+      end
+
       row :updated_at
     end
 
@@ -54,6 +60,10 @@ ActiveAdmin.register PlannedTour do
 
         column :phone_number do |participant|
           participant.customer.phone_number
+        end
+
+        column :actions do |participant|
+          link_to "Payment details", view_participant_payments_path(participant_id: participant.id)
         end
       end
     end
@@ -76,6 +86,12 @@ ActiveAdmin.register PlannedTour do
 
   member_action :add_participant, method: :get do
     @planned_tour = PlannedTour.find(params[:id])
+  end
+
+  member_action :view_participant_payments, method: :get do
+    @participant = Participant.find params[:participant_id]
+
+    redirect_to admin_participant_path(@participant.id)
   end
 
   member_action :submit_participant, method: :put do
