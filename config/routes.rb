@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+   # Serve websocket cable requests in-process
+  mount ActionCable.server => '/cable'
+
+  resources :tweets
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

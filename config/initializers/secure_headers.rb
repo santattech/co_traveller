@@ -1,3 +1,5 @@
+=begin
+
 SecureHeaders::Configuration.default do |config|
     config.cookies = {
       secure: true, # mark all cookies as "Secure"
@@ -25,4 +27,6 @@ SecureHeaders::Configuration.default do |config|
     if !Rails.env.production?
       config.csp[:connect_src] << "*"
     end
-  end
+
+end
+=end
