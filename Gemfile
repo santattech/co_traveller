@@ -37,7 +37,7 @@ group :development, :test do
   gem 'pry-rails'
 end
 
-#gem 'secure_headers', '6.3.3'
+gem 'secure_headers', '6.3.3'
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
