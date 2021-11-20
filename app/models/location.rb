@@ -23,8 +23,8 @@ class Location < ApplicationRecord
     end
     
     if last_location.lat == lat && last_location.lng == lng
-      #errors.add(:base, "skip this location as already logged as last")
-      #return false
+      errors.add(:base, "skip this location as already logged as last")
+      return false
     end
   end
 end

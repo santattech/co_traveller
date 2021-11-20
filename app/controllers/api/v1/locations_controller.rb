@@ -3,7 +3,6 @@ module Api
     class LocationsController < ApplicationController
       
       def create
-        last_location = Location.last
         location = Location.create(lat: params[:lat], lng: params[:lng])
 
         if location.errors.blank?
