@@ -21,7 +21,7 @@ SecureHeaders::Configuration.default do |config|
         https://*.tile.openstreetmap.org
       ),
       script_src: %w(
-        'self' 'unsafe-inline'
+        'self'
         https://maxcdn.bootstrapcdn.com
         https://cdn.jsdelivr.net
       )

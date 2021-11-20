@@ -1,4 +1,41 @@
-.map {
-  height: 1000px;
-  width: 100%;
+
+
+@media only screen and (min-width: 300px) {
+  .location-header {
+    font-size: 35px;
+    text-align: center;
+  }
+
+  .location-info {
+    font-size: 15px;
+  }
+
+  .location-info span {
+    font-size: 20px;
+  }
+
+  .map {
+    height: 1500px;
+    width: 100%;
+  }
+}
+
+
+@media only screen and (min-width: 1800px) {
+  .location-header {
+    text-align: center;
+  }
+
+  .location-info {
+    font-size: 20px;
+  }
+  
+  .location-info span {
+    font-size: 20px;
+  }
+  
+  .map {
+    height: 1000px;
+    width: 100%;
+  }
 }

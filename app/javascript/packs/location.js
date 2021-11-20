@@ -8,17 +8,27 @@ $(function () {
     return Math.random() * ref + min;
   }
 
-  qi.location.showMap();
+  if($('#map').length > 0) {
+    qi.location.showMap();
+  }
+  
 });
 
 qi.location = {
   getLocations: function() {
-    var locations = [
-      { lng: 88.4067, lat: 22.6001 },
-      { lng: 88.4306, lat: 22.6138 },
-      { lng: 88.4222, lat: 22.6666 }
-    ];
+    var locationData = document.querySelector('#map').dataset.locations;
 
+    if(locationData) {
+      var locations = JSON.parse(locationData);
+    }
+    else {
+      var locations = [
+        { lng: 88.4067, lat: 22.6001 },
+        { lng: 88.4306, lat: 22.6138 },
+        { lng: 88.4222, lat: 22.6666 }
+      ];
+    }
+    
     return locations;
   },
   prepareVector: function () {
@@ -84,7 +94,7 @@ qi.location = {
 
 $(document).on("click", "#start", () => {
   const options = {
-    enableHighAccuracy: false,
+    enableHighAccuracy: true,
     timeout: 10000,
     maximumAge: 0
   }
@@ -103,3 +113,6 @@ $(document).on("click", "#start", () => {
   );
 })
 
+$(document).on("click", "#stop", () => {
+  window.location.href = "/locations"
+})

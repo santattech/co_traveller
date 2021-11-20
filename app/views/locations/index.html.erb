@@ -1,7 +1,11 @@
-<h2>View my locations</h2>
+<h2 class="location-header">View my locations</h2>
+<div style=''>
+  <button id="start">Start</button>
+  <button id="stop">Stop</button>
+</div>
+<div class="location-info">
+  Current position: <span><%= @location_info[:current_loc].map(&:to_s).join(', ') %></span><br/>
+  Updated at: <span><%= @location_info[:last_updated_at] %></span>
+</div>
 
-<button id="start">Start</button>
-<button id="stop">Stop</button>
-
-<div id="map" class="map"></div>
-<div id="marker-1" title="Marker" class="marker"></div>
+<div id="map" class="map" data-locations="<%= @location_info[:points].to_json %>"></div>
