@@ -31,6 +31,9 @@ qi.location = {
     
     return locations;
   },
+  getPoint: function(x){
+    return new ol.geom.Point(ol.proj.fromLonLat(x));
+  },
   prepareVector: function () {
     var features = [];
     var layers = [
@@ -40,21 +43,11 @@ qi.location = {
     ];
     var locations = qi.location.getLocations();
 
-    /*$.each(locations, function (index, location) {
-      console.log(location.lat);
-      features.push(new ol.Feature({
-        geometry: new ol.geom.Point(
-          ol.proj.fromLonLat(22.6001, 88.4067)
-        )
-      })
-      )
-    });*/
-
     for (i = 0; i < locations.length; i++) {
-      features.push(new ol.Feature({
-        geometry: new ol.geom.Point(ol.proj.fromLonLat([
-          locations[i].lng, locations[i].lat
-        ]))
+      var x = [locations[i].lng, locations[i].lat];
+
+      features.push(new ol.Feature({  
+        geometry: qi.location.getPoint(x)
       }));
     }
 
@@ -62,6 +55,8 @@ qi.location = {
     const vectorSource = new ol.source.Vector({
       features
     });
+
+    this.features = features;
 
     const vectorLayer = new ol.layer.Vector({
       source: vectorSource,
