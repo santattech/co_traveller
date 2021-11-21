@@ -9,6 +9,20 @@ class Location < ApplicationRecord
     }
   end
 
+  def self.cleanup_location
+    locations = Location.all
+
+    locations.each_with_index do |location, index|
+      next if index.zero?
+
+      prev = locations[index - 1]
+      
+      if prev.lat == location.lat && prev.lng == location.lng
+        location.destroy
+      end
+    end
+  end
+
   def created_at_least_thirty_secs_ago?
     (Time.zone.now - created_at) > 30
   end

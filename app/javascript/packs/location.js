@@ -9,12 +9,13 @@ $(function () {
   }
 
   if($('#map').length > 0) {
-    qi.location.showMap();
+    qi.map = qi.location.showMap();
   }
   
 });
 
 qi.location = {
+  map: {},
   getLocations: function() {
     var locationData = document.querySelector('#map').dataset.locations;
 
@@ -79,11 +80,38 @@ qi.location = {
 
     var layers = qi.location.prepareVector();
 
-    var map = new ol.Map({
+    this.map = new ol.Map({
       target: 'map',
       layers: layers,
       view: view
     });
+  },
+  addDotLayer: function(loc) {
+    // sample loc
+    // loc = [88.3874, 22.6157];
+
+    var circleStyle = [
+      new ol.style.Style({
+        image: new ol.style.Circle({
+          fill: new ol.style.Fill({ color: 'green' }),
+          width: 6,
+          radius: 6
+        })
+      })
+    ];
+
+    var circleDot = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [
+          new ol.Feature({
+            geometry: qi.location.getPoint(loc)
+          })
+        ]
+      })
+    })
+
+    circleDot.setStyle(circleStyle);
+    qi.location.map.addLayer(circleDot);
   }
 }
 
@@ -98,9 +126,13 @@ $(document).on("click", "#start", () => {
     data => {
       // call an API to save in DB
       let url = '/api/v1/locations'
+      let lat = data.coords.latitude;
+      let lng = data.coords.longitude;
 
-      $.post(url, { lat: data.coords.latitude, lng: data.coords.longitude }, (data) => {
+      $.post(url, { lat: lat, lng: lng }, (data) => {
         console.log("created location with ", data)
+        var loc = [lng, lat];
+        qi.location.addDotLayer(loc)
       })
     },
     error => console.log(error),
