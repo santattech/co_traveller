@@ -8,18 +8,17 @@ $(function () {
     return Math.random() * ref + min;
   }
 
-  if($('#map').length > 0) {
+  if ($('#map').length > 0) {
     qi.map = qi.location.showMap();
   }
-  
 });
 
 qi.location = {
   map: {},
-  getLocations: function() {
+  getLocations: function () {
     var locationData = document.querySelector('#map').dataset.locations;
 
-    if(locationData) {
+    if (locationData) {
       var locations = JSON.parse(locationData);
     }
     else {
@@ -29,10 +28,10 @@ qi.location = {
         { lng: 88.4222, lat: 22.6666 }
       ];
     }
-    
+
     return locations;
   },
-  getPoint: function(x){
+  getPoint: function (x) {
     return new ol.geom.Point(ol.proj.fromLonLat(x));
   },
   prepareVector: function () {
@@ -47,7 +46,7 @@ qi.location = {
     for (i = 0; i < locations.length; i++) {
       var x = [locations[i].lng, locations[i].lat];
 
-      features.push(new ol.Feature({  
+      features.push(new ol.Feature({
         geometry: qi.location.getPoint(x)
       }));
     }
@@ -85,8 +84,10 @@ qi.location = {
       layers: layers,
       view: view
     });
+
+    qi.location.drawLineTrackFromLocations();
   },
-  addDotLayer: function(loc) {
+  addDotLayer: function (loc) {
     // sample loc
     // loc = [88.3874, 22.6157];
 
@@ -112,6 +113,45 @@ qi.location = {
 
     circleDot.setStyle(circleStyle);
     qi.location.map.addLayer(circleDot);
+  },
+  drawLineTrackFromLocations: function() {
+    var locations = qi.location.getLocations();
+
+    for (i = 0; i < locations.length - 1; i++) {
+      var x = [locations[i].lng, locations[i].lat];
+      var y = [locations[i+1].lng, locations[i+1].lat];
+
+      qi.location.drawLineTrack(x, y);
+    }
+
+  },
+  drawLineTrack: function (location1, location2) {
+    //var lonlat = ol.proj.fromLonLat([33.8, 8.4]);
+    //var location2 = ol.proj.fromLonLat([37.5, 8.0]);
+    var lonlat = ol.proj.fromLonLat(location1);
+    var location2 = ol.proj.fromLonLat(location2);
+    
+    var linie2style = [
+      // linestring
+      new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: '#d12710',
+          width: 2
+        })
+      })
+    ];
+
+    var linie2 = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [new ol.Feature({
+          geometry: new ol.geom.LineString([lonlat, location2]),
+          name: 'Line',
+        })]
+      })
+    });
+
+    linie2.setStyle(linie2style);
+    qi.location.map.addLayer(linie2);
   }
 }
 
@@ -138,6 +178,8 @@ $(document).on("click", "#start", () => {
     error => console.log(error),
     options
   );
+
+  qi.location.drawLineTrack();
 })
 
 $(document).on("click", "#stop", () => {
