@@ -2,11 +2,17 @@ class Location < ApplicationRecord
   validates_presence_of :lat, :lng
   validate :prevent_same_recent_location_log
 
+  scope :with_other_info, -> { where.not(other_info: nil) } 
+
   def as_json
     {
       lat: lat.to_f,
       lng: lng.to_f
     }
+  end
+
+  def self.filter_by_trip(trip_name)
+    self.where("other_info->>'trip_name' = ?", trip_name)
   end
 
   def self.cleanup_location

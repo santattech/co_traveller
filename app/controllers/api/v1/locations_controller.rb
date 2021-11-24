@@ -3,7 +3,12 @@ module Api
     class LocationsController < ApplicationController
       
       def create
-        location = Location.create(lat: params[:lat], lng: params[:lng])
+        if params[:trip_name].blank?
+          render status: 422, json: { message: "trip is missing" }
+          return
+        end
+
+        location = Location.create(lat: params[:lat], lng: params[:lng], other_info: { trip_name: params[:trip_name]})
 
         if location.errors.blank?
           render status: :created, json: { location: location.as_json }

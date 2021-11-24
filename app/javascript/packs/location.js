@@ -10,7 +10,7 @@ $(function () {
 
   if ($('#map').length > 0) {
     qi.map = qi.location.showMap();
-    $("#start").trigger('click');
+    //$("#start").trigger('click');
   }
 });
 
@@ -36,13 +36,15 @@ qi.location = {
     let url = '/api/v1/locations'
     let lat = data.coords.latitude;
     let lng = data.coords.longitude;
-    
-    if(lat == localStorage.getItem("lat") || lng == localStorage.getItem("lng")) {
+
+    if (lat == localStorage.getItem("lat") || lng == localStorage.getItem("lng")) {
       console.log("same location from last")
       return;
     }
 
-    $.post(url, { lat: lat, lng: lng }, (data) => {
+    const tripName = localStorage.getItem("trip");
+
+    $.post(url, { lat: lat, lng: lng, trip_name: tripName }, (data) => {
       console.log("created location with ", data)
       qi.location.addDotLayer([lng, lat]);
       //qi.location.resetStore();
@@ -185,10 +187,17 @@ $(document).on("click", "#start", () => {
     maximumAge: 0
   }
 
+  if (localStorage.getItem("trip")) {
+    alert("One trip is ongoing...");
+    return;
+  } else {
+    localStorage.setItem("trip", "trip_" + Date.now())
+  }
+
   navigator.geolocation.watchPosition(
     data => {
       // call an API to save in DB
-      qi.location.saveLocation(data)
+      qi.location.saveLocation(data);
     },
     error => console.log(error),
     options
@@ -196,5 +205,17 @@ $(document).on("click", "#start", () => {
 })
 
 $(document).on("click", "#stop", () => {
+  localStorage.removeItem("trip")
   window.location.href = "/locations"
+})
+
+$(document).on("change", ".trip-dropdown", (el) => {
+  if ($(el.target).val()) {
+    let url = "/locations?trip_name=" + $(el.target).val();
+    console.log($(el.target).val())
+    window.location.href = url;
+  } else {
+    window.location.href = "/locations";
+  }
+
 })

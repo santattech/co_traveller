@@ -22,8 +22,12 @@
   .location-button {
     font-size: 20px;
   }
-}
 
+  .trip-dropdown {
+    font-size: 15px;
+    color: #212529;
+  }
+}
 
 @media only screen and (min-width: 1800px) {
   .location-header {
@@ -42,4 +46,24 @@
     height: 600px;
     width: 100%;
   }
+}
+
+
+.trip-dropdown {
+  padding: 2px;
+  margin: 20px 0;
+  color: #212529;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+}
+
+.trip-dropdown option {
+  font-weight: normal;
+  display: block;
+  white-space: nowrap;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
 }

@@ -1,11 +1,18 @@
 <h2 class="location-header">View my locations</h2>
 <div class='location-button'>
-  <button id="start">Start</button>
-  <button id="stop">Stop</button>
+  <button id="start">Start trip</button>
+  <button id="stop">End trip</button>
 </div>
-<div class="location-info">
-  Current position: <span><%= @location_info[:current_loc].map(&:to_s).join(', ') %></span><br/>
-  Updated at: <span><%= @location_info[:last_updated_at] %></span>
-</div>
+
+<section class="row">
+  <div class="location-info col-md-4">
+    Current position: <span><%= @location_info[:current_loc].map(&:to_s).join(', ') %></span><br/>
+    Updated at: <span><%= @location_info[:last_updated_at] %></span>
+  </div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4 form-select">
+    <%= select("locations", "trip_name", options_for_select(@location_info[:trip_names], selected: params[:trip_name]), { include_blank: "Select trip" }, class: "trip-dropdown") %>
+  </div>
+</section>
 
 <div id="map" class="map" data-locations="<%= @location_info[:points].to_json %>"></div>
