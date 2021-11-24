@@ -10,6 +10,7 @@ $(function () {
 
   if ($('#map').length > 0) {
     qi.map = qi.location.showMap();
+    $("#start").trigger('click');
   }
 });
 
@@ -30,6 +31,16 @@ qi.location = {
     }
 
     return locations;
+  },
+  saveLocation: (data) => {
+    let url = '/api/v1/locations'
+    let lat = data.coords.latitude;
+    let lng = data.coords.longitude;
+
+    $.post(url, { lat: lat, lng: lng }, (data) => {
+      console.log("created location with ", data)
+      qi.location.addDotLayer([lng, lat])
+    })
   },
   getPoint: function (x) {
     return new ol.geom.Point(ol.proj.fromLonLat(x));
@@ -114,12 +125,12 @@ qi.location = {
     circleDot.setStyle(circleStyle);
     qi.location.map.addLayer(circleDot);
   },
-  drawLineTrackFromLocations: function() {
+  drawLineTrackFromLocations: function () {
     var locations = qi.location.getLocations();
 
     for (i = 0; i < locations.length - 1; i++) {
       var x = [locations[i].lng, locations[i].lat];
-      var y = [locations[i+1].lng, locations[i+1].lat];
+      var y = [locations[i + 1].lng, locations[i + 1].lat];
 
       qi.location.drawLineTrack(x, y);
     }
@@ -130,7 +141,7 @@ qi.location = {
     //var location2 = ol.proj.fromLonLat([37.5, 8.0]);
     var lonlat = ol.proj.fromLonLat(location1);
     var location2 = ol.proj.fromLonLat(location2);
-    
+
     var linie2style = [
       // linestring
       new ol.style.Style({
@@ -165,21 +176,11 @@ $(document).on("click", "#start", () => {
   navigator.geolocation.watchPosition(
     data => {
       // call an API to save in DB
-      let url = '/api/v1/locations'
-      let lat = data.coords.latitude;
-      let lng = data.coords.longitude;
-
-      $.post(url, { lat: lat, lng: lng }, (data) => {
-        console.log("created location with ", data)
-        var loc = [lng, lat];
-        qi.location.addDotLayer(loc)
-      })
+      qi.location.saveLocation(data)
     },
     error => console.log(error),
     options
   );
-
-  qi.location.drawLineTrack();
 })
 
 $(document).on("click", "#stop", () => {
