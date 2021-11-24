@@ -7,12 +7,26 @@ $(function () {
   const getRandomNumber = function (min, ref) {
     return Math.random() * ref + min;
   }
+  
+  let wakeLock = null;
+
+  const wakeF = async () => {
+    try {
+      wakeLock = await navigator.wakeLock.request('screen');
+      console.log('Wake Lock is active!');
+    } catch (err) {
+      // The Wake Lock request has failed - usually system related, such as battery.
+      console.log(`${err.name}, ${err.message}`);
+    }
+  }
 
   if ($('#map').length > 0) {
     qi.map = qi.location.showMap();
+    wakeF();
     //$("#start").trigger('click');
   }
 });
+
 
 qi.location = {
   map: {},
@@ -67,6 +81,7 @@ qi.location = {
       })
     ];
     var locations = qi.location.getLocations();
+    var i = 0;
 
     for (i = 0; i < locations.length; i++) {
       var x = [locations[i].lng, locations[i].lat];
@@ -141,6 +156,7 @@ qi.location = {
   },
   drawLineTrackFromLocations: function () {
     var locations = qi.location.getLocations();
+    var i = 0;
 
     for (i = 0; i < locations.length - 1; i++) {
       var x = [locations[i].lng, locations[i].lat];
@@ -189,7 +205,6 @@ $(document).on("click", "#start", () => {
 
   if (localStorage.getItem("trip")) {
     alert("One trip is ongoing...");
-    return;
   } else {
     localStorage.setItem("trip", "trip_" + Date.now())
   }
@@ -206,6 +221,7 @@ $(document).on("click", "#start", () => {
 
 $(document).on("click", "#stop", () => {
   localStorage.removeItem("trip")
+  qi.location.resetStore();
   window.location.href = "/locations"
 })
 
