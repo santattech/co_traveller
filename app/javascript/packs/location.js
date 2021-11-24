@@ -36,11 +36,23 @@ qi.location = {
     let url = '/api/v1/locations'
     let lat = data.coords.latitude;
     let lng = data.coords.longitude;
+    
+    if(lat == localStorage.getItem("lat") || lng == localStorage.getItem("lng")) {
+      console.log("same location from last")
+      return;
+    }
 
     $.post(url, { lat: lat, lng: lng }, (data) => {
       console.log("created location with ", data)
-      qi.location.addDotLayer([lng, lat])
+      qi.location.addDotLayer([lng, lat]);
+      //qi.location.resetStore();
+      localStorage.setItem("lat", lat);
+      localStorage.setItem("lng", lng);
     })
+  },
+  resetStore: () => {
+    localStorage.removeItem("lat");
+    localStorage.removeItem("lng");
   },
   getPoint: function (x) {
     return new ol.geom.Point(ol.proj.fromLonLat(x));
