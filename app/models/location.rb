@@ -11,6 +11,7 @@ class Location < ApplicationRecord
     }
   end
 
+  
   def self.filter_by_trip(trip_name)
     self.where("other_info->>'trip_name' = ?", trip_name)
   end
