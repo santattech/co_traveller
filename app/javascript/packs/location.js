@@ -11,6 +11,12 @@ $(function () {
   let wakeLock = null;
 
   const wakeF = async () => {
+    if('wakeLock' in navigator) {
+      console.log("waked")
+    } else {
+      return
+    }
+
     try {
       wakeLock = await navigator.wakeLock.request('screen');
       console.log('Wake Lock is active!');
@@ -23,7 +29,13 @@ $(function () {
   if ($('#map').length > 0) {
     qi.map = qi.location.showMap();
     wakeF();
-    //$("#start").trigger('click');
+    const tripName = localStorage.getItem("trip");
+
+    if(tripName) {
+      $("#start").trigger('click');
+      alert("trip is continuing");
+    }
+    
   }
 });
 
@@ -53,7 +65,7 @@ qi.location = {
 
     if (lat == localStorage.getItem("lat") || lng == localStorage.getItem("lng")) {
       console.log("same location from last")
-      return;
+      //return;
     }
 
     const tripName = localStorage.getItem("trip");

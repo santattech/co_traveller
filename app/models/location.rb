@@ -30,20 +30,24 @@ class Location < ApplicationRecord
     end
   end
 
-  def created_at_least_thirty_secs_ago?
+  def created_at_least_few_secs_ago?
     (Time.zone.now - created_at) > 10
+  end
+
+  def created_before_60_seconds_ago?
+    (Time.zone.now - created_at) < 30
   end
 
   def prevent_same_recent_location_log
     last_location = Location.last
     return unless last_location
 
-    if !(last_location.created_at_least_thirty_secs_ago?)
+    if !(last_location.created_at_least_few_secs_ago?)
       self.errors.add(:base, "skip this location as created just now")
       return false
     end
     
-    if last_location.lat == lat && last_location.lng == lng
+    if (last_location.lat == lat && last_location.lng == lng) && last_location.created_before_60_seconds_ago? 
       errors.add(:base, "skip this location as already logged as last")
       return false
     end
