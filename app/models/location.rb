@@ -16,6 +16,27 @@ class Location < ApplicationRecord
     self.where("other_info->>'trip_name' = ?", trip_name)
   end
 
+  def self.calculate_distance_for_trip(trip_name)
+    locations = filter_by_trip(trip_name)
+    total_distance = 0
+
+    locations.each_with_index do |location, index|
+      next_location = locations[index + 1]
+
+      if next_location
+        geo_service = GeoService.new(location.lat, location.lng)
+        total_distance += geo_service.calculate_distance_from(next_location.lat, next_location.lng)
+      end
+    end
+
+    total_distance
+  end
+
+  def location_name
+    geo_service = GeoService.new(lat, lng)
+    geo_service.reverse_lookup
+  end
+
   def self.cleanup_location
     locations = Location.all
 
