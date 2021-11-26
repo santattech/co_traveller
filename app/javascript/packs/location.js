@@ -7,11 +7,11 @@ $(function () {
   const getRandomNumber = function (min, ref) {
     return Math.random() * ref + min;
   }
-  
+
   let wakeLock = null;
 
   const wakeF = async () => {
-    if('wakeLock' in navigator) {
+    if ('wakeLock' in navigator) {
       console.log("waked")
     } else {
       return
@@ -31,11 +31,11 @@ $(function () {
     wakeF();
     const tripName = localStorage.getItem("trip");
 
-    if(tripName) {
+    if (tripName) {
       $("#start").trigger('click');
       alert("trip is continuing");
     }
-    
+
   }
 });
 
@@ -72,7 +72,7 @@ qi.location = {
 
     $.post(url, { lat: lat, lng: lng, trip_name: tripName }, (data) => {
       console.log("created location with ", data)
-      qi.location.addDotLayer([lng, lat]);
+      qi.location.addDotLayer([lng, lat], 'green');
       //qi.location.resetStore();
       localStorage.setItem("lat", lat);
       localStorage.setItem("lng", lng);
@@ -139,16 +139,54 @@ qi.location = {
 
     qi.location.drawLineTrackFromLocations();
   },
-  addDotLayer: function (loc) {
+  addDotLayer: function (loc, color) {
     // sample loc
     // loc = [88.3874, 22.6157];
 
     var circleStyle = [
       new ol.style.Style({
         image: new ol.style.Circle({
-          fill: new ol.style.Fill({ color: 'green' }),
-          width: 6,
-          radius: 6
+          fill: new ol.style.Fill({ color: color }),
+          width: 4,
+          radius: 4,
+        }),
+      })
+    ];
+
+    var circleDot = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [
+          new ol.Feature({
+            geometry: qi.location.getPoint(loc)
+          })
+        ]
+      })
+    })
+
+    circleDot.setStyle(circleStyle);
+    qi.location.map.addLayer(circleDot);
+  },
+  addDotWithText: function (loc, color, text) {
+    // sample loc
+    // loc = [88.3874, 22.6157];
+
+    var circleStyle = [
+      new ol.style.Style({
+        image: new ol.style.Circle({
+          fill: new ol.style.Fill({ color: color }),
+          width: 8,
+          radius: 8,
+        }),
+        text: new ol.style.Text({
+          font: '11px roboto,sans-serif',
+          text: text,
+          fill: new ol.style.Fill({
+            color: 'white'
+          }),
+          scale: 2,
+          textAlign: 'center',
+          textBaseline: 'center',
+          
         })
       })
     ];
@@ -167,16 +205,19 @@ qi.location = {
     qi.location.map.addLayer(circleDot);
   },
   drawLineTrackFromLocations: function () {
-    var locations = qi.location.getLocations();
+    const locations = qi.location.getLocations();
     var i = 0;
+    const length = locations.length;
 
-    for (i = 0; i < locations.length - 1; i++) {
+    for (i = 0; i < length - 1; i++) {
       var x = [locations[i].lng, locations[i].lat];
       var y = [locations[i + 1].lng, locations[i + 1].lat];
 
       qi.location.drawLineTrack(x, y);
     }
 
+    qi.location.addDotWithText([locations[0].lng, locations[0].lat], 'black', 's');
+    qi.location.addDotWithText([locations[length - 1].lng, locations[length - 1].lat], 'black', 'e');
   },
   drawLineTrack: function (location1, location2) {
     //var lonlat = ol.proj.fromLonLat([33.8, 8.4]);

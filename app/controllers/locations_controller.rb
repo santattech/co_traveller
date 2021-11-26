@@ -12,7 +12,7 @@ class LocationsController < ApplicationController
     
     @location_info[:last_updated_at] = last_loc.created_at.in_time_zone('Asia/Kolkata').strftime("%d %b %Y %I:%M %p")
     @location_info[:current_loc] = [last_loc.lat, last_loc.lng]
-    @location_info[:current_loc_name] = last_loc.location_name
+    @location_info[:current_loc_name] = nil
     @location_info[:points] = locations.as_json
     @location_info[:trip_names] = Location.with_other_info.pluck(:other_info).map{|t| t['trip_name']}.uniq.sort
   end
