@@ -215,7 +215,7 @@ qi.location = {
 
       qi.location.drawLineTrack(x, y);
 
-      if(true) {
+      if(i%30==0) {
         qi.location.addDotWithText([locations[i].lng, locations[i].lat], 'blue', locations[i].createdAt, 8, 8, 'black')
       }
       
