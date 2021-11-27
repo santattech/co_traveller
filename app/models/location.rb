@@ -7,7 +7,8 @@ class Location < ApplicationRecord
   def as_json
     {
       lat: lat.to_f,
-      lng: lng.to_f
+      lng: lng.to_f,
+      createdAt: created_at.in_time_zone('Asia/Kolkata').strftime("%H:%M")
     }
   end
 

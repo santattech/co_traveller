@@ -166,7 +166,7 @@ qi.location = {
     circleDot.setStyle(circleStyle);
     qi.location.map.addLayer(circleDot);
   },
-  addDotWithText: function (loc, color, text) {
+  addDotWithText: function (loc, color, text, width, radius) {
     // sample loc
     // loc = [88.3874, 22.6157];
 
@@ -174,8 +174,8 @@ qi.location = {
       new ol.style.Style({
         image: new ol.style.Circle({
           fill: new ol.style.Fill({ color: color }),
-          width: 8,
-          radius: 8,
+          width: width,
+          radius: radius,
         }),
         text: new ol.style.Text({
           font: '11px roboto,sans-serif',
@@ -214,10 +214,15 @@ qi.location = {
       var y = [locations[i + 1].lng, locations[i + 1].lat];
 
       qi.location.drawLineTrack(x, y);
+
+      if(i%20==0) {
+        qi.location.addDotWithText([locations[i].lng, locations[i].lat], 'blue', locations[i].createdAt, 12, 12)
+      }
+      
     }
 
-    qi.location.addDotWithText([locations[0].lng, locations[0].lat], 'black', 's');
-    qi.location.addDotWithText([locations[length - 1].lng, locations[length - 1].lat], 'black', 'e');
+    qi.location.addDotWithText([locations[0].lng, locations[0].lat], 'black', 's', 8, 8);
+    qi.location.addDotWithText([locations[length - 1].lng, locations[length - 1].lat], 'black', 'e', 8, 8);
   },
   drawLineTrack: function (location1, location2) {
     //var lonlat = ol.proj.fromLonLat([33.8, 8.4]);
