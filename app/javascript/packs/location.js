@@ -125,8 +125,8 @@ qi.location = {
   },
   showMap: function () {
     var view = new ol.View({
-      center: ol.proj.fromLonLat([88.4306, 22.6138]),
-      zoom: 12
+      center: ol.proj.fromLonLat([88.4387022, 22.6092715]),
+      zoom: 16
     });
 
     var layers = qi.location.prepareVector();
@@ -229,8 +229,8 @@ qi.location = {
       // linestring
       new ol.style.Style({
         stroke: new ol.style.Stroke({
-          color: '#d12710',
-          width: 2
+          color: '#0080ff',
+          width: 5
         })
       })
     ];

@@ -1,4 +1,6 @@
 class LocationsController < ApplicationController
+  before_action :admin_user_logged_in
+
   def index
     @location_info = {}
     locations = Location.with_other_info.order('created_at ASC')

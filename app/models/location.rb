@@ -56,7 +56,7 @@ class Location < ApplicationRecord
   end
 
   def created_before_60_seconds_ago?
-    (Time.zone.now - created_at) < 30
+    (Time.zone.now - created_at) < 15
   end
 
   def prevent_same_recent_location_log
