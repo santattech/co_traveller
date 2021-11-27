@@ -10,7 +10,8 @@
     Updated at: <span><%= @location_info[:last_updated_at] %></span>
 
     <% if params[:trip_name].present? %>
-    <p>For <%= params[:trip_name] %> distance covered: <span class="distance"><%= @location_info[:distance] %> km</span></p>
+      <p class="trip_para">Distance covered: <span class="distance"><%= @location_info[:distance] %> km</span></p>
+      <p class="trip_para">Duration: <span class="distance"><%= @location_info[:trip_duration] %></span></p>
     <% end %>
   </div>
 

@@ -8,6 +8,7 @@ class LocationsController < ApplicationController
     if params[:trip_name].present?
       locations = locations.filter_by_trip(params[:trip_name]) 
       @location_info[:distance] = locations.calculate_distance_for_trip(params[:trip_name]).round(2)
+      @location_info[:trip_duration] = locations.trip_duration
     end
     
     last_loc = Location.order('created_at ASC').last

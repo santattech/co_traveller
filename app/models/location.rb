@@ -17,6 +17,18 @@ class Location < ApplicationRecord
     self.where("other_info->>'trip_name' = ?", trip_name)
   end
 
+  def self.trip_duration
+    secs = (self.last.created_at - self.first.created_at)
+    
+    [[60, :seconds], [60, :minutes], [24, :hours], [Float::INFINITY, :days]].map{ |count, name|
+      if secs > 0
+        secs, n = secs.divmod(count)
+
+        "#{n.to_i} #{name}" unless n.to_i==0
+      end
+    }.compact.reverse.join(' ')
+  end
+
   def self.calculate_distance_for_trip(trip_name)
     locations = filter_by_trip(trip_name)
     total_distance = 0
