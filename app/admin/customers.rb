@@ -1,4 +1,5 @@
 ActiveAdmin.register Customer do
+  menu parent: "Users", label: "Customers", priority: 2
   config.batch_actions = false
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
