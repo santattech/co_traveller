@@ -61,3 +61,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # geocoding
 gem 'geocoder', '1.7.0'
+
+gem 'sidekiq-scheduler'
