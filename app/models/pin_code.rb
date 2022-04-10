@@ -87,4 +87,16 @@ class PinCode < ApplicationRecord
     self.place = address
     self.save
   end
+
+  def use_nominatim
+    p = place.split(' ').join('_')
+    url = "https://nominatim.openstreetmap.org/search/#{place}?format=json&addressdetails=1&limit=1&polygon_svg=1"
+    url = URI.encode url.strip
+    uri = URI url
+    res = Net::HTTP.get(uri)
+    puts res
+    self.latitude ||= JSON.parse(res)[0]["lat"] rescue nil
+    self.longitude ||= JSON.parse(res)[0]["lon"] rescue nil
+    self.save
+  end
 end
