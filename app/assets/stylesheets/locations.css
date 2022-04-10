@@ -1,5 +1,3 @@
-
-
 @media only screen and (min-width: 300px) {
   .location-header {
     font-size: 35px;
@@ -48,10 +46,12 @@
   }
 }
 
-
+p.trip_para {
+  margin: 0;
+}
 .trip-dropdown {
   padding: 2px;
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   color: #212529;
   font-size: 18px;
   font-weight: 400;

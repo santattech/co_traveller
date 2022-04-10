@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   get 'view_participant_payments', to: 'admin/planned_tours#view_participant_payments'
   resources :health_checks, only: [:index]
-  resources :locations, only: [:index]
+  resources :locations, only: [:index] do
+    get :get_nearest_poi, on: :collection
+  end
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do

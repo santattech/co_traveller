@@ -1,0 +1,10 @@
+---
+:verbose: true
+:concurrency: <%= (ENV['MAX_THREADS'] || 10).to_i %>
+:queues:
+  - geocoding
+
+:schedule:
+  geocoding:
+    cron: '0 * * * * *'   # Runs once per minute
+    class: GeoCodePin

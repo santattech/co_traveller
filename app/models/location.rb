@@ -7,13 +7,47 @@ class Location < ApplicationRecord
   def as_json
     {
       lat: lat.to_f,
-      lng: lng.to_f
+      lng: lng.to_f,
+      createdAt: created_at.in_time_zone('Asia/Kolkata').strftime("%H:%M")
     }
   end
 
   
   def self.filter_by_trip(trip_name)
     self.where("other_info->>'trip_name' = ?", trip_name)
+  end
+
+  def self.trip_duration
+    secs = (self.last.created_at - self.first.created_at)
+    
+    [[60, :seconds], [60, :minutes], [24, :hours], [Float::INFINITY, :days]].map{ |count, name|
+      if secs > 0
+        secs, n = secs.divmod(count)
+
+        "#{n.to_i} #{name}" unless n.to_i==0
+      end
+    }.compact.reverse.join(' ')
+  end
+
+  def self.calculate_distance_for_trip(trip_name)
+    locations = filter_by_trip(trip_name)
+    total_distance = 0
+
+    locations.each_with_index do |location, index|
+      next_location = locations[index + 1]
+
+      if next_location
+        geo_service = GeoService.new(location.lat, location.lng)
+        total_distance += geo_service.calculate_distance_from(next_location.lat, next_location.lng)
+      end
+    end
+
+    total_distance
+  end
+
+  def location_name
+    geo_service = GeoService.new(lat, lng)
+    geo_service.reverse_lookup
   end
 
   def self.cleanup_location
@@ -35,7 +69,7 @@ class Location < ApplicationRecord
   end
 
   def created_before_60_seconds_ago?
-    (Time.zone.now - created_at) < 30
+    (Time.zone.now - created_at) < 15
   end
 
   def prevent_same_recent_location_log

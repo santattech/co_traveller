@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_19_100915) do
+ActiveRecord::Schema.define(version: 2022_04_06_054028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,23 @@ ActiveRecord::Schema.define(version: 2021_11_19_100915) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id", "planned_tour_id"], name: "customer_planned_tour_idx", unique: true
+  end
+
+  create_table "payment_to_rasus", force: :cascade do |t|
+    t.integer "amount", default: 0
+    t.text "description"
+    t.date "payment_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pin_codes", force: :cascade do |t|
+    t.string "pin_code"
+    t.string "place"
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "planned_tours", force: :cascade do |t|
