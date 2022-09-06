@@ -9,11 +9,14 @@ Rails.application.routes.draw do
   resources :health_checks, only: [:index]
   resources :locations, only: [:index] do
     get :get_nearest_poi, on: :collection
+    get :puri_stops, on: :collection
   end
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :locations, only: [:create]
+      resources :locations, only: [:create] do
+        post :record_location, on: :collection
+      end
     end
   end
 end

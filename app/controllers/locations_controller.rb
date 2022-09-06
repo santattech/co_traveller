@@ -42,6 +42,27 @@ class LocationsController < ApplicationController
     render json: { place: place }, status: :ok
   end
 
+  def puri_stops
+    @rows = CSV.read('app/models/puri_stoppages.csv', headers: true)
+    stoppages = @rows.map{|c| c['Stoppages'] }
+    cnt = (stoppages.count % 3) ? (stoppages.count / 3) : (stoppages.count / 3) +1  
+    @first_stoppages = stoppages[0..cnt]
+    @second_stoppages = stoppages[cnt+1..(cnt+cnt)]
+    @third_stoppages = stoppages[(cnt+cnt)+1..stoppages.count]
+
+    # @rows.each do |row|
+    #   unless row['loc'].present?
+    #     puts "0"
+    #     next
+    #   end
+    #   next unless row['Stoppages'] == "Laxmannath toll"
+      
+    #   dest_loc_arr = row['loc'].split(',').map(&:to_f)
+    #   dist = Location.distance([22.6085692,88.4382332], dest_loc_arr)
+    #   puts dist
+    # end
+  end
+
   def make_api_secure
 
   end

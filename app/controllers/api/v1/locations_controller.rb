@@ -1,6 +1,7 @@
 module Api
   module V1
     class LocationsController < ApplicationController
+      skip_before_action :verify_authenticity_token, only: [:record_location]
       
       def create
         if params[:trip_name].blank?
@@ -15,6 +16,18 @@ module Api
         else
           render status: 422, json: { message: location.errors.full_messages.to_sentence }
         end
+      end
+
+      def record_location
+        count = 0
+        
+        if params[:locations_arr].present?
+          params[:locations_arr].each do |location|
+            count = count + 1 if Location.create(lat: location[0], lng: location[1])
+          end
+        end
+
+        render status: :ok, json: { location: "#{count} locations created" } 
       end
     end
   end

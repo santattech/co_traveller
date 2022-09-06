@@ -67,3 +67,22 @@ p.trip_para {
   min-height: 1.2em;
   padding: 0px 2px 1px;
 }
+
+.puris li {
+  list-style: none;
+  font-size: 14px;
+  width: 100px;
+  padding: 1px 5px;
+  margin-bottom: 3px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 0; } /* more concise! */
+  50% { opacity: 1; }
+}
+
+.puris .toll {
+  color: red;
+  font-weight: bold;
+  animation: blink 2s infinite;
+}

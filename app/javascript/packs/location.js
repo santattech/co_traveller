@@ -36,6 +36,38 @@ $(function () {
       alert("trip is continuing");
     }
 
+  } else if ($('.puris').length > 0) {
+    wakeF();
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    };
+
+    navigator.geolocation.watchPosition(
+      data => {
+        // call an API to save in DB
+        // qi.location.saveLocation(data);
+        let distance = qi.location.calcCrow(22.6085692,88.4382332, data.coords.latitude, data.coords.longitude);
+        distance = 80;
+        console.log(distance);
+
+        $('.alert-danger').each(function(index) {
+          //console.log( index + ": " + $( this ).data('distance') );
+          if($( this ).data('distance') < distance) {
+            $(this).removeClass('alert-danger').addClass('alert-success');
+          }
+        });
+
+        $('.alert-danger').each(function(index) {
+          if(index === 0) {
+            $(this).removeClass('alert-danger').addClass('alert-warning');
+          }
+        });
+      },
+      error => console.log(error),
+      options
+    );
   }
 });
 
@@ -251,6 +283,22 @@ qi.location = {
 
     linie2.setStyle(linie2style);
     qi.location.map.addLayer(linie2);
+  },
+  calcCrow: function(lat1, lon1, lat2, lon2) {
+    var R = 6371; // km
+    var dLat = qi.location.toRad(lat2-lat1);
+    var dLon = qi.location.toRad(lon2-lon1);
+    var lat1 = qi.location.toRad(lat1);
+    var lat2 = qi.location.toRad(lat2);
+
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c;
+    return d;
+  },
+  toRad: function(Value) {
+    return Value * Math.PI / 180;
   }
 }
 

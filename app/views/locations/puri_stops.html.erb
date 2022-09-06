@@ -1,0 +1,29 @@
+<h2 class="location-header">Puri Stoppages</h2>
+
+<section class="row">
+  <div class="location-info col-md-4">
+  </div>
+
+  <div class="col-md-4"></div>
+</section>
+
+<section class="puris row">
+    <ul class='col-3'>
+      <% @first_stoppages.each do |stop| %>
+        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance']%>><%= stop %></li>
+        <%= hidden_field_tag(stop, @rows.detect{|r| r['Stoppages'] == stop }['distance']) %>
+      <% end %>
+    </ul>
+    <ul class='col-3'>
+      <% @second_stoppages.each do |stop| %>
+        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance']%>><%= stop %></li>
+        <%= hidden_field_tag(stop, @rows.detect{|r| r['Stoppages'] == stop }['distance']) %>
+      <% end %>
+    </ul>
+    <ul class='col-3'>
+      <% @third_stoppages.each do |stop| %>
+        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance']%>><%= stop %></li>
+        <%= hidden_field_tag(stop, @rows.detect{|r| r['Stoppages'] == stop }['distance']) %>
+      <% end %>
+    </ul>
+</section>

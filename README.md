@@ -6,6 +6,10 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+bundle
+nvm use 12.14.1
+yarn install --check-files
+rails s
 
 * System dependencies
 

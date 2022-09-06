@@ -57,13 +57,6 @@ ActiveRecord::Schema.define(version: 2022_04_06_054028) do
     t.integer "age"
   end
 
-  create_table "destinations", force: :cascade do |t|
-    t.float "lat", null: false
-    t.float "lng", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "locations", force: :cascade do |t|
     t.decimal "lat", null: false
     t.decimal "lng", null: false
@@ -90,14 +83,6 @@ ActiveRecord::Schema.define(version: 2022_04_06_054028) do
     t.index ["customer_id", "planned_tour_id"], name: "customer_planned_tour_idx", unique: true
   end
 
-  create_table "payment_to_rasus", force: :cascade do |t|
-    t.integer "amount", default: 0
-    t.text "description"
-    t.date "payment_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "pin_codes", force: :cascade do |t|
     t.string "pin_code"
     t.string "place"
@@ -112,22 +97,6 @@ ActiveRecord::Schema.define(version: 2022_04_06_054028) do
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tweets", force: :cascade do |t|
-    t.text "body"
-    t.integer "likes"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email", null: false
-    t.string "password_digest", null: false
-    t.string "first_name"
-    t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
