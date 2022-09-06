@@ -48,8 +48,8 @@ $(function () {
       data => {
         // call an API to save in DB
         // qi.location.saveLocation(data);
+        console.log(data.coords);
         let distance = qi.location.calcCrow(22.6085692,88.4382332, data.coords.latitude, data.coords.longitude);
-        distance = 80;
         console.log(distance);
 
         $('.alert-danger').each(function(index) {
