@@ -59,11 +59,23 @@ $(function () {
           }
         });
 
-        $('.alert-danger').each(function(index) {
+        $('.alert-danger').each(function(index) {  
           if(index === 0) {
-            $(this).removeClass('alert-danger').addClass('alert-warning');
+            if($('.alert-warning').length <= 0) {
+              $(this).removeClass('alert-danger').addClass('alert-warning');
+            }  
           }
         });
+
+        var destDistance = $('.alert-warning').data('distance');
+        var diffDist = destDistance - distance;
+        var prevDist = $('.alert-success').last().data('distance');
+
+        var toGo = diffDist * 100.0/ (destDistance - prevDist);
+        var nextstopCoverage = 100 - toGo
+        var message = "We are almost to " + $('.alert-warning').html() + " stoppage (" + nextstopCoverage.toFixed(2) + "%)"
+        $('.location-info').html(message);
+
       },
       error => console.log(error),
       options

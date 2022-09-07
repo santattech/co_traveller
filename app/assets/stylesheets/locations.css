@@ -84,5 +84,10 @@ p.trip_para {
 .puris .toll {
   color: red;
   font-weight: bold;
-  animation: blink 2s infinite;
+  animation: blink 5s infinite;
+}
+
+.puris .river {
+  color: blue;
+  font-style: oblique;
 }
