@@ -8,4 +8,8 @@ module LocationsHelper
       'alert-danger'
     end
   end
+
+  def approx_distance(rows, stop)
+    (rows.detect{|r| r['Stoppages'] == stop }['distance'].to_f * 1.23).round(2)
+  end
 end

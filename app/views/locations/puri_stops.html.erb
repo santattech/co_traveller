@@ -10,20 +10,18 @@
 <section class="puris row">
     <ul class='col-3'>
       <% @first_stoppages.each do |stop| %>
-        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance']%>><%= stop %></li>
+        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance'] %>><%= stop %>(<%= approx_distance(@rows, stop) %>)</li>
         <%= hidden_field_tag(stop, @rows.detect{|r| r['Stoppages'] == stop }['distance']) %>
       <% end %>
     </ul>
     <ul class='col-3'>
       <% @second_stoppages.each do |stop| %>
-        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance']%>><%= stop %></li>
-        <%= hidden_field_tag(stop, @rows.detect{|r| r['Stoppages'] == stop }['distance']) %>
+        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance']%>><%= stop %>(<%= approx_distance(@rows, stop) %>)</li>
       <% end %>
     </ul>
     <ul class='col-3'>
       <% @third_stoppages.each do |stop| %>
-        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance']%>><%= stop %></li>
-        <%= hidden_field_tag(stop, @rows.detect{|r| r['Stoppages'] == stop }['distance']) %>
+        <li class='<%= puri_location_classes(stop) %>' data-distance=<%=@rows.detect{|r| r['Stoppages'] == stop }['distance']%>><%= stop %>(<%= approx_distance(@rows, stop) %>)</li>
       <% end %>
     </ul>
 </section>

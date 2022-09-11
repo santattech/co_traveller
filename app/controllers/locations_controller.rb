@@ -55,7 +55,7 @@ class LocationsController < ApplicationController
     #     puts "0"
     #     next
     #   end
-    #   next unless row['Stoppages'] == "Laxmannath toll"
+    #   next unless row['Stoppages'] == "Chhatia"
       
     #   dest_loc_arr = row['loc'].split(',').map(&:to_f)
     #   dist = Location.distance([22.6085692,88.4382332], dest_loc_arr)

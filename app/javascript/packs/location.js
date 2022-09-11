@@ -50,12 +50,19 @@ $(function () {
         // qi.location.saveLocation(data);
         console.log(data.coords);
         let distance = qi.location.calcCrow(22.6085692,88.4382332, data.coords.latitude, data.coords.longitude);
-        console.log(distance);
+        console.log("new distance", distance);
 
         $('.alert-danger').each(function(index) {
           //console.log( index + ": " + $( this ).data('distance') );
           if($( this ).data('distance') < distance) {
             $(this).removeClass('alert-danger').addClass('alert-success');
+          }
+        });
+
+        $('.alert-warning').each(function(index) {
+          //console.log( index + ": " + $( this ).data('distance') );
+          if($( this ).data('distance') < distance) {
+            $(this).removeClass('alert-warning').addClass('alert-success');
           }
         });
 
