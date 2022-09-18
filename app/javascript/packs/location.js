@@ -52,6 +52,8 @@ $(function () {
         let distance = qi.location.calcCrow(22.6085692,88.4382332, data.coords.latitude, data.coords.longitude);
         console.log("new distance", distance);
 
+        $('li').removeClass('alert-success').removeClass('alert-warning').addClass('alert-danger');
+
         $('.alert-danger').each(function(index) {
           //console.log( index + ": " + $( this ).data('distance') );
           if($( this ).data('distance') < distance) {
