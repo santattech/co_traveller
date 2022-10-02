@@ -89,6 +89,12 @@ $(function () {
       error => console.log(error),
       options
     );
+
+    // calling the textToSpeech in every 60 secs
+    setInterval(function() {
+      var message = $('.location-info').html();
+      qi.location.textToSpeech(message);
+  }, 60 * 1000);
   }
 });
 
@@ -320,6 +326,15 @@ qi.location = {
   },
   toRad: function(Value) {
     return Value * Math.PI / 180;
+  },
+  textToSpeech: function(value) {
+    'speechSynthesis' in window ? console.log("Web Speech API supported!") : console.log("Web Speech API not supported :-(")
+
+    const synth = window.speechSynthesis
+    let ourText = value;
+    const utterThis = new SpeechSynthesisUtterance(ourText)
+
+    synth.speak(utterThis)
   }
 }
 
