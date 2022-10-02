@@ -7,7 +7,7 @@ Things you may want to cover:
 
 * Ruby version
 bundle
-nvm use 12.14.1
+nvm use 16.0.0
 yarn install --check-files
 rails s
 
