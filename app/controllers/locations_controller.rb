@@ -43,7 +43,7 @@ class LocationsController < ApplicationController
   end
 
   def puri_stops
-    @rows = CSV.read('app/models/aniya.csv', headers: true)
+    @rows = CSV.read('app/models/puri_stoppages.csv', headers: true)
     stoppages = @rows.map{|c| c['Stoppages'] }
     cnt = (stoppages.count % 3) ? (stoppages.count / 3) : (stoppages.count / 3) +1  
     @first_stoppages = stoppages[0..cnt]
