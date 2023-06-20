@@ -6,7 +6,8 @@ ruby '3.0.0'
 # administrator framework
 gem 'activeadmin', '2.13.1'
 gem 'devise', '4.8.1'
-
+gem 'jwt', '1.5.6'
+gem 'fast_jsonapi', '1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '7.0.0'
 # Use postgresql as the database for Active Record
