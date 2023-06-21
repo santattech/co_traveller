@@ -102,6 +102,8 @@ GEM
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.15.5)
     formtastic (4.0.0)
       actionpack (>= 5.2.0)
@@ -131,6 +133,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jsbundling-rails (1.1.2)
       railties (>= 6.0.0)
+    jwt (1.5.6)
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.2.2)
@@ -189,6 +192,8 @@ GEM
     raabro (1.4.0)
     racc (1.7.1)
     rack (2.2.7)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-proxy (0.7.6)
       rack
     rack-test (2.1.0)
@@ -314,13 +319,16 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   capybara (>= 2.15)
   devise (= 4.8.1)
+  fast_jsonapi (= 1.5)
   geocoder (= 1.7.0)
   jbuilder (~> 2.7)
   jsbundling-rails
+  jwt (= 1.5.6)
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 4.1)
+  rack-cors (= 2.0.1)
   rails (= 7.0.0)
   sass-rails (>= 6)
   secure_headers (= 6.3.3)

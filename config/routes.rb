@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       resources :locations, only: [:create] do
         post :record_location, on: :collection
       end
+
+      resources :user_sessions, only: [:create, :destroy]
     end
   end
 end

@@ -6,7 +6,8 @@ ruby '3.0.0'
 # administrator framework
 gem 'activeadmin', '2.13.1'
 gem 'devise', '4.8.1'
-
+gem 'jwt', '1.5.6'
+gem 'fast_jsonapi', '1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '7.0.0'
 # Use postgresql as the database for Active Record
@@ -26,6 +27,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'rack-cors' , '2.0.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
