@@ -22,7 +22,7 @@ module Api
       end
 
       def destroy
-        current_user.update(mobile_device_id: nil)
+        current_user
         render status: :ok, json: json_api_serializer_response(current_user, meta: { message: "Logout successful" })
       end
     end

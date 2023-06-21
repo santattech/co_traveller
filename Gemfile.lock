@@ -192,6 +192,8 @@ GEM
     raabro (1.4.0)
     racc (1.7.1)
     rack (2.2.7)
+    rack-cors (2.0.1)
+      rack (>= 2.0.0)
     rack-proxy (0.7.6)
       rack
     rack-test (2.1.0)
@@ -326,6 +328,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 4.1)
+  rack-cors (= 2.0.1)
   rails (= 7.0.0)
   sass-rails (>= 6)
   secure_headers (= 6.3.3)
