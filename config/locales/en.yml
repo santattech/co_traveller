@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  error_code:
+    "1101": 'unauthorized access tried'
+    "unauthorized": 'unauthorized access tried'
