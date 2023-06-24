@@ -16,6 +16,8 @@ module Api
       end
 
       def current_user
+        sleep 3
+        #return AdminUser.first
         return @current_user if @current_user
 
         unless @current_user == false
