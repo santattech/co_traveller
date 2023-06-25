@@ -24,6 +24,8 @@ Rails.application.routes.draw do
           put :reset_password
         end
       end
+
+      resources :fuel_entries
     end
   end
 end
