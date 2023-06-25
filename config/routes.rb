@@ -18,7 +18,14 @@ Rails.application.routes.draw do
         post :record_location, on: :collection
       end
 
-      resources :user_sessions, only: [:create, :destroy]
+      resources :user_sessions, only: [:create, :destroy] do
+        collection do
+          get :get_user
+          put :reset_password
+        end
+      end
+
+      resources :fuel_entries
     end
   end
 end
