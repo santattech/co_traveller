@@ -67,3 +67,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'geocoder', '1.7.0'
 
 gem 'sidekiq-scheduler'
+gem "yard", "~> 0.9.34"
