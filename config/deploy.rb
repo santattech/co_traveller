@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "co_traveller"
-set :repo_url, "git@bitbucket.org:qinvent/licensing_portal.git"
+set :repo_url, "git@github.com:santattech/co_traveller.git"
 # set :repo_tree, "sm"
 # set :deploy_to, "/home/ubuntu/projects/lp"
 
@@ -43,15 +43,15 @@ set :keep_releases, 3
 set :use_sudo, false
 
 set :rvm_type, :user
-set :rvm_ruby_version, 'ruby-2.2.1'
+set :rvm_ruby_version, 'ruby-3.0.0'
 set :pty, false
-set :linked_files, %w{config/database.yml config/secrets.yml .env.staging}
+set :linked_files, %w{config/secrets.yml .env.production}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 set :ssh_options, {
       forward_agent: true,
       auth_methods: ["publickey"],
-      keys: ["~/.ssh/Qi-Services-TTAP.pem"]
+      keys: ["aws-location.pem.pem"]
     }
 
 namespace :deploy do
