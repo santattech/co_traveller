@@ -20,7 +20,12 @@ module Api
 
       def record_location
         count = 0
-        
+        if request.headers['X-API-KEY'].present? && request.headers['X-API-KEY'] != '987654321'
+          Rails.logger.error("The header not matched: #{request.headers['X-API-KEY']}")
+          render status: 401, json: { message: 'illegal try' }
+          return
+        end
+
         if params[:locations_arr].present?
           params[:locations_arr].each do |location|
             count = count + 1 if Location.create(lat: location[0], lng: location[1])
