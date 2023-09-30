@@ -1,5 +1,5 @@
-server '13.228.77.190', user: 'ubuntu', roles: %w{web app db}
-set :branch, "staging"
+server '3.110.220.112', user: 'ubuntu', roles: %w{web app db}
+set :branch, "implement-capistrano"
 # set :repo_tree, "sm"
 set :deploy_to, "/home/ubuntu/projects/ct"
 set :puma_bind, "tcp://0.0.0.0:3000"
