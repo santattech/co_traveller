@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/seuros/capistrano-puma.git
-  revision: 2cc11846540489edda10d83e026c9bea04e6fab1
-  specs:
-    capistrano3-puma (6.0.0.beta.1)
-      capistrano (~> 3.7)
-      capistrano-bundler
-      puma (>= 5.1, < 7.0)
-
-GIT
   remote: https://github.com/seuros/capistrano-sidekiq.git
   revision: c8e1766b39478d5e9cfe10100d648dfd28c6c06b
   specs:
@@ -117,6 +108,10 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-puma (3.1.1)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (~> 3.4)
     capybara (3.39.2)
       addressable
       matrix
@@ -228,8 +223,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (5.0.3)
-    puma (6.4.0)
-      nio4r (~> 2.0)
+    puma (3.7.0)
     raabro (1.4.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -372,7 +366,7 @@ DEPENDENCIES
   capistrano-rake
   capistrano-rvm (= 0.1.2)
   capistrano-sidekiq!
-  capistrano3-puma!
+  capistrano3-puma (= 3.1.1)
   capybara (>= 2.15)
   devise (= 4.8.1)
   fast_jsonapi (= 1.5)
@@ -384,7 +378,7 @@ DEPENDENCIES
   net-ssh (= 4.2.0)
   pg (>= 0.18, < 2.0)
   pry-rails
-  puma
+  puma (= 3.7.0)
   rack-cors (= 2.0.1)
   rails (= 7.0.0)
   sass-rails (>= 6)
