@@ -133,6 +133,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    dotenv (2.7.1)
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
@@ -372,6 +373,7 @@ DEPENDENCIES
   capistrano3-puma (= 3.1.1)
   capybara (>= 2.15)
   devise (= 4.8.1)
+  dotenv (= 2.7.1)
   fast_jsonapi (= 1.5)
   geocoder (= 1.7.0)
   jbuilder (~> 2.7)
@@ -389,7 +391,7 @@ DEPENDENCIES
   sidekiq-scheduler
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
+  sqlite3 (= 1.6.6)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
