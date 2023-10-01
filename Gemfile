@@ -12,7 +12,8 @@ gem 'fast_jsonapi', '1.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '7.0.0'
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+# gem 'pg', '>= 0.18', '< 2.0'
+gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '3.7.0'
 # Use SCSS for stylesheets
@@ -72,12 +73,13 @@ gem 'sidekiq-scheduler'
 group :development do
   #for cap deploy
   gem 'capistrano', '3.11.0'
-  gem 'net-ssh', '4.2.0'
+  # gem 'net-ssh', '4.2.0'
+  gem 'net-ssh', '7.0.1'
   gem 'capistrano3-puma', '3.1.1'#github: "seuros/capistrano-puma"
   gem 'capistrano-rails', require: false
   gem 'capistrano-rails-console', '~> 2.3', require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano-rake', require: false
+  gem 'capistrano-bundler', '1.4.0', require: false
+  gem 'capistrano-rake', '0.2.0', require: false
   gem 'capistrano-rvm', '0.1.2'
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 end

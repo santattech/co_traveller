@@ -1,4 +1,4 @@
-server '3.110.220.112', user: 'ubuntu', roles: %w{web app db}
+server 'ec2-3-110-220-112.ap-south-1.compute.amazonaws.com', user: 'ubuntu', roles: %w{web app db}
 set :branch, "implement-capistrano"
 # set :repo_tree, "sm"
 set :deploy_to, "/home/ubuntu/projects/ct"
