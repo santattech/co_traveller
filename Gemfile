@@ -13,7 +13,7 @@ gem 'fast_jsonapi', '1.5'
 gem 'rails', '7.0.0'
 # Use postgresql as the database for Active Record
 # gem 'pg', '>= 0.18', '< 2.0'
-gem 'sqlite3'
+gem 'sqlite3', '1.6.6'
 # Use Puma as the app server
 gem 'puma', '3.7.0'
 # Use SCSS for stylesheets
@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors' , '2.0.1'
-
+gem 'dotenv', '2.7.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
