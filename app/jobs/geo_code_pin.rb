@@ -1,10 +1,10 @@
 # geo_code_pin.rb
 
-require 'sidekiq-scheduler'
+# require 'sidekiq-scheduler'
 
 class GeoCodePin
-  include Sidekiq::Worker
-  sidekiq_options retry: 2, dead: false, queue: :geocoding
+  # include Sidekiq::Worker
+  # sidekiq_options retry: 2, dead: false, queue: :geocoding
 
   def perform
     #puts "===> remaining data: #{count}"

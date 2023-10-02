@@ -67,8 +67,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # geocoding
 gem 'geocoder', '1.7.0'
-
-gem 'sidekiq-scheduler'
+gem 'delayed_job_recurring'
+gem 'delayed_job_recurring'
 
 group :development do
   #for cap deploy
@@ -81,5 +81,5 @@ group :development do
   gem 'capistrano-bundler', '1.4.0', require: false
   gem 'capistrano-rake', '0.2.0', require: false
   gem 'capistrano-rvm', '0.1.2'
-  gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+  # gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 end
