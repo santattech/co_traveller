@@ -18,7 +18,7 @@ module CoTraveller
     config.sass.line_comments = false
     config.sass.cache = false
     config.assets.enabled = true
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :delayed_job
     config.active_record.belongs_to_required_by_default = false
     Dir.glob("#{config.root}/lib/*.{rb}").each { |file| require file }
     

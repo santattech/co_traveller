@@ -16,3 +16,5 @@ if FuelEntry.all.blank?
   FuelEntry.create(odometer: 860, price: 95, quantity: 11, entry_date: DateTime.parse('2021-06-05'))
   FuelEntry.create(odometer: 990, price: 96, quantity: 8, entry_date: DateTime.parse('2021-07-24'))
 end
+
+exec 'rake recurring:init'
