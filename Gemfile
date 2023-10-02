@@ -69,6 +69,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'geocoder', '1.7.0'
 gem 'delayed_job_recurring'
 gem 'delayed_job_recurring'
+gem 'foreman', '0.87.2'
 
 group :development do
   #for cap deploy
