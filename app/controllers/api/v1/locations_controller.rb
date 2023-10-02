@@ -20,7 +20,7 @@ module Api
 
       def record_location
         count = 0
-        if request.headers['X-API-KEY'].present? && request.headers['X-API-KEY'] != '987654321'
+        if request.headers['X-API-KEY'].present? && request.headers['X-API-KEY'] != ENV.fetch('X_API_KEY', 123456789)
           Rails.logger.error("The header not matched: #{request.headers['X-API-KEY']}")
           render status: 401, json: { message: 'illegal try' }
           return

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_25_065256) do
+ActiveRecord::Schema.define(version: 2023_10_02_131301) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -52,6 +52,21 @@ ActiveRecord::Schema.define(version: 2023_06_25_065256) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "adhar_no"
     t.integer "age"
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer "priority", default: 0, null: false
+    t.integer "attempts", default: 0, null: false
+    t.text "handler", null: false
+    t.text "last_error"
+    t.datetime "run_at", precision: 6
+    t.datetime "locked_at", precision: 6
+    t.datetime "failed_at", precision: 6
+    t.string "locked_by"
+    t.string "queue"
+    t.datetime "created_at", precision: 6
+    t.datetime "updated_at", precision: 6
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "fuel_entries", force: :cascade do |t|

@@ -13,7 +13,7 @@ require 'capistrano/rails/assets' # for asset handling add
 require 'capistrano/rails/console'
 require 'capistrano/rake' # for
 require 'capistrano/puma'
-require 'capistrano/sidekiq'
+# require 'capistrano/sidekiq'
 #require 'capistrano/sidekiq/monit'
 
 # Load the SCM plugin appropriate to your project:
